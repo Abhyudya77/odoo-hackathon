@@ -4,6 +4,16 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import PostEventPage from "./pages/PostEventPage";
 import EventDetailPage from "./pages/EventDetailPage";
+import Navbar from "./components/Navbar";
+import Toast from "./components/Toast";
+
+<Router>
+  <Navbar />
+  <Toast />
+  <Routes>
+    {/*  routes */}
+  </Routes>
+</Router>
 
 const App = () => {
   return (
