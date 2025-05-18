@@ -1,4 +1,5 @@
 import twilio from "twilio";
+import { sendSMS } from "../utils/sendSMS.js";
 
 const client = twilio(process.env.TWILIO_SID, process.env.TWILIO_AUTH);
 
@@ -14,3 +15,5 @@ export const sendSMS = async (to, message) => {
     console.error("SMS error:", error);
   }
 };
+
+await sendSMS(user.phone, `Reminder: ${event.title} is tomorrow at ${event.location.address}`);
