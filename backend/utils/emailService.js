@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { sendEmail } from "../utils/sendEmail.js";
 
 const transporter = nodemailer.createTransport({
   service: "gmail", 
@@ -21,3 +22,9 @@ export const sendEmail = async (to, subject, html) => {
     console.error("Email error:", error);
   }
 };
+
+await sendEmail(
+  user.email,
+  "Event Reminder",
+  `<p>Hi ${user.name}, don't forget your event tomorrow: <strong>${event.title}</strong></p>`
+);
