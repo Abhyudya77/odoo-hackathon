@@ -1,4 +1,3 @@
-// backend/index.js
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
@@ -14,7 +13,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Routes
 app.use("/api/events", eventRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/auth", authRoutes);
