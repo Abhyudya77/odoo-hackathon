@@ -4,6 +4,19 @@ import { useParams } from "react-router-dom";
 import RSVPForm from "../components/RSVPForm";
 import Loader from "../components/Loader";
 
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useEventLiveUpdates } from '../hooks/useEventLiveUpdates';
+import axios from 'axios';
+
+function EventDetailPage() {
+  const { id } = useParams();
+  const [loading, setLoading] = useState(true);
+  const [initialEvent, setInitialEvent] = useState(null);
+
+ 
+
+
 const EventDetailPage = () => {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
@@ -27,6 +40,26 @@ const EventDetailPage = () => {
   if (loading) return <Loader />;
   if (!event) return <p className="text-center text-red-500">Event not found</p>;
 
+   useEffect(() => {
+    async function fetchEvent() {
+      try {
+        const { data } = await axios.get(`http://localhost:5000/api/events/${id}`);
+        setInitialEvent(data);
+        setLoading(false);
+      } catch (err) {
+        console.error(err);
+        setLoading(false);
+      }
+    }
+    fetchEvent();
+  }, [id]);
+
+  const event = useEventLiveUpdates(id, initialEvent);
+
+  if (loading) return <p>Loading event...</p>;
+  if (!event) return <p>Event not found</p>;
+
+ 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-2">{event.title}</h1>
@@ -38,5 +71,16 @@ const EventDetailPage = () => {
     </div>
   );
 };
+
+   return (
+    <div>
+      <h1>{event.title}</h1>
+      <p>{event.description}</p>
+      <p>Location: {event.location}</p>
+      <p>Date & Time: {new Date(event.dateTime).toLocaleString()}</p>
+      
+    </div>
+  );
+}
 
 export default EventDetailPage;
