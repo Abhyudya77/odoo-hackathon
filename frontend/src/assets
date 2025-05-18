@@ -1,0 +1,14 @@
+src/assets/
+a. logo.png
+b. default-event.jpg
+c. category-icons/
+    1. garage-sale.svg
+    2. sports.svg
+    3. classes.svg
+    4. volunteer.svg
+    5. exhibition.svg
+    6. festival.svg
+    7. yoga.svg
+
+i had currnety no image due to lack of time. Later I will replace these with actual SVGs or PNGs, or use icon libraries like Lucide or Heroicons.
+
