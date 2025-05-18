@@ -1,6 +1,7 @@
 # odoo-hackathon
 A location-aware platform for local event participation and community engagement.
 
+View it in the code format.This is not a fully made project but a progrssing project.
 
 Community Events Platform
 
